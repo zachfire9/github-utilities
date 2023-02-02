@@ -16,11 +16,11 @@ These are the values you'll need to pass in the query string to for a repo.
 http://127.0.0.1:5000/?token={Personal Access Token}&owner={Repo Owner}&repo={Repo Name}
 ```
 
-token: GitHub Personal Access Token for the user you want the forked repo associated with
+`token`: GitHub Personal Access Token for the user you want the forked repo associated with
 
-owner: GitHub owner of the repository you want to fork
+`owner`: GitHub owner of the repository you want to fork
 
-repo: GitHub repository you want to fork
+`repo`: GitHub repository you want to fork
 
 ## Configure App Environment
 

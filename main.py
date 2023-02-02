@@ -11,6 +11,9 @@ def fork_repo():
     """https://docs.github.com/en/rest/repos/forks?apiVersion=2022-11-28#create-a-fork"""
     args = request.args
 
+    # I set owner and repo up as a querystring params, but they could easily be hardcoded 
+    # to my owner and this repo name. I figured this would be more re-usable because 
+    # you could fork additional repos.
     if not args.get('owner'):
         return jsonify(error='Missing "owner" value in the querystring'), 400
     owner = args['owner']
