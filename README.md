@@ -1,6 +1,6 @@
 # GitHub Utilites
 
-App for interacting with GitHub
+App for interacting with GitHub using OAuth
 
 ## Configure App Environment
 
