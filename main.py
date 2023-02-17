@@ -7,6 +7,10 @@ from flask_session import Session
 
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['GITHUB_CLIENT_ID'] = os.environ.get('GITHUB_CLIENT_ID')
+app.config['GITHUB_CLIENT_SECRET'] = os.environ.get('GITHUB_CLIENT_SECRET')
+
 app.secret_key = app.config['SECRET_KEY']
 app.config['SESSION_TYPE'] = 'filesystem'
 sess = Session()
@@ -24,6 +28,7 @@ def callback():
     args = request.args
 
     endpoint = f"https://github.com/login/oauth/access_token?client_id={app.config['GITHUB_CLIENT_ID']}&client_secret={app.config['GITHUB_CLIENT_SECRET']}&code={args.get('code')}"
+    print(endpoint)
     headers = {
         'Accept': 'application/json',
     }
@@ -38,6 +43,9 @@ def callback():
 
 @app.route('/fork', methods = ['GET'])
 def fork_repo_form():
+    if not session.get('access_token'):
+        return redirect("/", code=302)
+
     return render_template('fork.html')
 
 @app.route('/fork', methods = ['POST'])
